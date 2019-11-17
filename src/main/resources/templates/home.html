@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{boot.css}" href="boot.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div th:if="${calc==true}" class="home__page__calculator">
+    <form action="/" method="post">
+        <h2 class="calculator-title">Oblicz swój wskaźnik <strong>BMI</strong></h2>
+        <div class="input-group">
+            <div class="group__left hidden-xs">
+                <span class="label-std">Płeć:</span>
+            </div>
+            <div class="group__right">
+                <span class="label-std label-gender-mobile hidden-lg hidden-md hidden-sm">Płeć:</span>
+
+                <div class="input-radio-btn">
+                    <input type="radio" id="bmi_gender_f" name="bmi_gender" value="female" checked="">
+                    <label for="bmi_gender_f"><span class="radio-btn"></span><span class="input-label-std">K</span></label>
+                </div>
+                <div class="input-radio-btn">
+                    <input type="radio" id="bmi_gender_m" name="bmi_gender" value="male">
+                    <label for="bmi_gender_m"><span class="radio-btn"></span><span class="input-label-std">M</span></label>
+                </div>
+            </div>
+        </div>
+
+        <div class="input-group ">
+            <div class="group__left">
+                <label  class="label-std">Waga:</label>
+            </div>
+            <div class="group__right">
+                <input type="number" class="input-text-std" name="weight" value="">
+                <span class="input-units-std">kg</span>
+                <span class="error-text-std"></span>
+            </div>
+        </div>
+
+        <div class="input-group ">
+            <div class="group__left">
+                <label class="label-std">Wzrost:</label>
+            </div>
+            <div class="group__right">
+                <input type="text" class="input-text-std" name="height" value="">
+                <span class="input-units-std">cm</span>
+                <span class="error-text-std"></span>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <div class="group__right">
+                <button type="submit" class="btn-std"><span class="btn__label">Oblicz</span></button>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <div class="group__right">
+                <p class="calculator-info__title">Zakresy wartości BMI:</p>
+                <ul class="calculator-info__list">
+                    <li>mniej niż 16 - wygłodzenie</li>
+                    <li>16 - 16.99 - wychudzenie</li>
+                    <li>17 - 18.49 - niedowaga</li>
+                    <li>18.5 - 24.99 - wartość prawidłowa</li>
+                    <li>25 - 29.99 - nadwaga</li>
+                    <li>30 - 34.99 - I stopień otyłości</li>
+                    <li>35 - 39.99 - II stopień otyłości</li>
+                    <li>powyżej 40 - otyłość skrajna</li>
+                </ul>
+            </div>
+        </div>
+    </form>
+</div>
+<div th:if="${calc==false}" class="home__page__calculator__result-v1">
+    <h5 class="result-v1__title">Wskaźnik BMI wynosi: <strong th:text="${BMI.value}" style="color: #f91429"></strong></h5>
+    <span class="result-v1__title-des">i oznacza <strong th:text="${BMI.tier}"></strong></span>
+    <span th:text="${BMI.goal}" class="result-v1__info"> </span>
+    <a href="/" class="btn-std btn--sm"><span class="btn__label">Oblicz ponownie</span></a>
+</div>
+
+</body>
+</html>
